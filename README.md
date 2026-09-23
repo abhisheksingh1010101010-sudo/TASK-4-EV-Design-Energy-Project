@@ -309,22 +309,24 @@ Battery aging
 Therefore, the calculated range should be considered an approximate engineering estimate rather than a certified vehicle specification.
 
 17. Final Design Summary
-Component	Proposed Specification
-Vehicle	Small Urban Electric Car
-Total loaded mass	1050 kg
-Battery	30 kWh Lithium-ion
-Battery voltage	144 V
-Approx. battery capacity	208 Ah
-Motor	PMSM
-Peak motor power	40 kW
-Continuous motor power	20 kW
-Drivetrain efficiency	90%
-Usable battery energy	27 kWh
-Normal energy consumption	~150 Wh/km
-Estimated range	~180 km
-Maximum speed	~80 km/h
-Regenerative braking	Yes
-18. Conclusion
+18. | Component                 | Proposed Specification   |
+| ------------------------- | ------------------------ |
+| Vehicle                   | Small Urban Electric Car |
+| Total loaded mass         | 1050 kg                  |
+| Battery                   | 30 kWh Lithium-ion       |
+| Battery voltage           | 144 V                    |
+| Approx. battery capacity  | 208 Ah                   |
+| Motor                     | PMSM                     |
+| Peak motor power          | 40 kW                    |
+| Continuous motor power    | 20 kW                    |
+| Drivetrain efficiency     | 90%                      |
+| Usable battery energy     | 27 kWh                   |
+| Normal energy consumption | ~150 Wh/km               |
+| Estimated range           | ~180 km                  |
+| Maximum speed             | ~80 km/h                 |
+| Regenerative braking      | Yes                      |
+
+19. Conclusion
 
 This project provided a practical understanding of how the major components of an Electric Vehicle system are selected and how battery capacity, motor power, energy consumption, and driving range are related.
 
