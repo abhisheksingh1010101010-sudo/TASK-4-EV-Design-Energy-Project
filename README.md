@@ -1,348 +1,483 @@
-# TASK-4-EV-Design-Energy-Project
-Electric Vehicle Technology Internship
+TASK 4: EV DESIGN & ENERGY PROJECT
 Project Title
 
-Basic Electric Vehicle Design and Energy Consumption Analysis
+Design and Energy Analysis of a Battery Electric Vehicle (BEV)
 
-1. Introduction
+Internship Domain
 
-Electric Vehicles (EVs) are becoming an important part of modern transportation because they offer higher energy efficiency and can reduce dependence on conventional fossil fuels. An EV mainly consists of a battery pack, electric motor, motor controller/inverter, Battery Management System (BMS), charging system, and vehicle control system.
+Electric Vehicle Technology
 
-In this project, a basic electric vehicle system is designed for a small urban electric car. The objective is to estimate the required battery capacity, motor power, approximate driving range, and energy consumption under different operating conditions.
+Project Objective
 
-The design is based on practical engineering assumptions and simplified calculations suitable for an academic EV design study.
+The objective of this project is to design a basic electric vehicle system for a selected vehicle application and estimate its motor power, battery capacity, energy consumption and driving range. The project also analyzes the energy requirement of the vehicle under different operating conditions such as city driving, highway driving, acceleration and uphill driving.
 
-2. Selected Vehicle/Application
+1. Selected Vehicle/Application
 
-For this project, the selected application is:
+For this project, a compact electric passenger car is selected.
 
-Vehicle: Small Urban Electric Car
-Application: City transportation and short-distance commuting
+The vehicle is designed for daily urban and highway transportation with a practical balance between performance, battery capacity and driving range.
 
-Assumed Vehicle Specifications
-Parameter	Assumed Value
-Vehicle type	Small Urban EV
-Kerb mass	900 kg
-Passengers	2
-Total loaded mass	1050 kg
-Maximum speed	80 km/h
-Typical city speed	40 km/h
-Battery voltage	144 V
-Battery capacity	30 kWh
-Motor type	Permanent Magnet Synchronous Motor
-Motor peak power	40 kW
-Motor continuous power	20 kW
-Drivetrain efficiency	90%
-Battery usable SOC range	90%
-Estimated practical range	~180 km
-3. Basic EV System Design
+Basic Vehicle Specification
+
+| Parameter                         |                       Design Value |
+| --------------------------------- | ---------------------------------: |
+| Vehicle type                      |               Compact Electric Car |
+| Number of passengers              |                                  4 |
+| Vehicle mass                      |                            1200 kg |
+| Maximum speed                     |                           100 km/h |
+| Target cruising speed             |                            60 km/h |
+| Aerodynamic drag coefficient (Cd) |                               0.29 |
+| Frontal area                      |                             2.2 m² |
+| Rolling resistance coefficient    |                              0.012 |
+| Wheel radius                      |                             0.29 m |
+| Drivetrain efficiency             |                                90% |
+| Battery nominal voltage           |                              350 V |
+| Battery capacity                  |                             30 kWh |
+| Motor type                        | Permanent Magnet Synchronous Motor |
+| Motor peak power                  |                              50 kW |
+| Motor continuous power            |                           25–30 kW |
+| Estimated practical range         |                        ~180–200 km |
+
+2. Basic EV System Architecture
 
 The proposed EV consists of the following major components:
 
-1. Battery Pack
+Battery Pack → Inverter → Electric Motor → Transmission → Wheels
 
-The battery is the primary energy storage unit of the vehicle. A 30 kWh lithium-ion battery pack is selected for this design.
+Additional systems include:
 
-2. Electric Motor
+Battery Management System (BMS)
+On-board charger
+DC-DC converter
+Vehicle Control Unit (VCU)
+Regenerative braking system
+Thermal management system
+Charging port
+Working Principle
 
-A 40 kW PMSM motor is selected because it provides good efficiency and suitable torque characteristics for an urban EV.
+The battery stores electrical energy in DC form. The inverter converts the battery's DC power into controlled AC power for the traction motor. The motor converts electrical energy into mechanical torque, which is transferred to the wheels through the reduction gearbox.
 
-3. Motor Controller/Inverter
+During braking, the motor can operate as a generator and recover part of the vehicle's kinetic energy. This energy is returned to the battery through the regenerative braking system.
 
-The inverter converts the battery's DC electrical power into the required AC power for the motor and controls motor speed and torque.
+3. Vehicle Forces
 
-4. Battery Management System (BMS)
+The main forces acting against an EV during motion are:
 
-The BMS monitors:
+Rolling resistance
+Aerodynamic drag
+Gradient resistance
+Acceleration force
 
-Cell voltage
-Battery current
-Temperature
-State of Charge (SOC)
-Battery protection conditions
-5. Charging System
+The total tractive force required is:
 
-An onboard AC charger can be used for normal charging, while DC fast charging can be used where supported.
+$$ F_{total}=F_{rolling}+F_{aero}+F_{grade}+F_{acceleration} $$
+4. Rolling Resistance
 
-6. Transmission/Reduction Gear
+Rolling resistance is given by:
 
-A single-speed reduction gearbox transfers motor torque to the driving wheels.
+$$ F_{rolling}=C_{rr}mg $$
 
-7. Regenerative Braking
+Where:
 
-During deceleration, the motor can operate as a generator and recover part of the vehicle's kinetic energy back into the battery.
+\(C_{rr}=0.012\)
+\(m=1200\,kg\)
+\(g=9.81\,m/s^2\)
 
-4. Basic EV System Block Diagram
+Therefore:
 
-Battery Pack → BMS → Inverter/Controller → Electric Motor → Reduction Gear → Wheels
+$$ F_{rolling}=0.012\times1200\times9.81 $$ $$ \boxed{F_{rolling}=141.3\,N} $$
 
-Additional systems:
+So approximately 141 N of force is required to overcome rolling resistance on a flat road.
 
-Charging Station → Onboard Charger → Battery
+5. Aerodynamic Drag
 
-Wheels → Regenerative Braking → Motor → Inverter → Battery
+Aerodynamic resistance is:
 
-5. Battery Capacity Estimation
+$$ F_{aero}=\frac{1}{2}\rho C_d A v^2 $$
 
-The selected battery capacity is:
+Assume:
 
-Battery Capacity = 30 kWh
+Air density, \(\rho=1.225\,kg/m^3\)
+\(C_d=0.29\)
+\(A=2.2\,m^2\)
 
-Assuming the usable battery SOC window is approximately 90%:
+At 60 km/h:
 
-Usable Energy = 30 × 0.90
+$$ v=\frac{60}{3.6}=16.67\,m/s $$
 
-Usable Energy = 27 kWh
+Therefore:
 
-Therefore, approximately 27 kWh of the battery's nominal energy can be considered usable for normal operation.
+$$ F_{aero}=\frac12(1.225)(0.29)(2.2)(16.67)^2 $$ $$ \boxed{F_{aero}\approx122\,N} $$
+6. Power Requirement at 60 km/h
 
-6. Battery Pack Voltage and Ah Capacity
+At 60 km/h on a level road:
 
-The battery voltage is assumed to be:
+$$ F_{total}=141.3+122 $$ $$ F_{total}\approx263.3\,N $$
 
-V = 144 V
+Vehicle speed:
 
-Battery energy:
+$$ v=16.67\,m/s $$
 
-E = 30 kWh = 30,000 Wh
+Mechanical power required:
+
+$$ P=Fv $$ $$ P=263.3\times16.67 $$ $$ P\approx4388\,W $$
+
+Therefore:
+
+$$ \boxed{P_{wheel}\approx4.4\,kW} $$
+
+Considering 90% drivetrain efficiency:
+
+$$ P_{battery}=\frac{4.4}{0.90} $$ $$ \boxed{P_{battery}\approx4.9\,kW} $$
+
+Thus, approximately 4.9 kW electrical power is required to maintain 60 km/h on a level road under these assumptions.
+
+7. Motor Power Requirement
+
+The motor must provide enough power for:
+
+Normal cruising
+Acceleration
+Uphill driving
+Overtaking
+Additional load
+Real-world losses
+
+Although the calculated cruising power is relatively low, a substantially higher motor rating is required for acceleration and gradients.
+
+Selected Motor
+
+50 kW peak PMSM traction motor
+
+Specifications:
+
+| Parameter        |                                          Value |
+| ---------------- | ---------------------------------------------: |
+| Motor type       |                                           PMSM |
+| Peak power       |                                          50 kW |
+| Continuous power |                                       25–30 kW |
+| Nominal voltage  |                                         ~350 V |
+| Maximum speed    |                                    ~10,000 rpm |
+| Application      |                                       Traction |
+| Cooling          | Liquid/air cooling depending on implementation |
+
+
+A 50 kW peak motor provides a reasonable margin over the calculated normal cruising requirement.
+
+8. Motor Torque Requirement
+
+Wheel torque can be calculated from:
+
+$$ T=F\times r $$
+
+For level-road cruising at 60 km/h:
+
+$$ T=263.3\times0.29 $$ $$ \boxed{T\approx76\,Nm} $$
+
+However, the actual motor must provide considerably higher torque during vehicle launch and acceleration.
+
+With a reduction gearbox, the motor torque can be multiplied before reaching the wheels.
+
+For example, assuming a reduction ratio of approximately 9:1, the required motor torque is reduced compared with direct drive.
+
+9. Acceleration Requirement
+
+Suppose the vehicle is required to accelerate from:
+
+0 to 50 km/h in 10 seconds
+
+Final velocity:
+
+$$ 50/3.6=13.89\,m/s $$
+
+Average acceleration:
+
+$$ a=\frac{13.89}{10} $$ $$ a=1.389\,m/s^2 $$
+
+Acceleration force:
+
+$$ F_{acc}=ma $$ $$ F_{acc}=1200\times1.389 $$ $$ \boxed{F_{acc}\approx1667\,N} $$
+
+Adding rolling and aerodynamic resistance, the total force during acceleration is approximately:
+
+$$ F_{total}\approx1667+141+85 $$ $$ \boxed{F_{total}\approx1893\,N} $$
+
+At 50 km/h:
+
+$$ P=Fv $$ $$ P=1893\times13.89 $$ $$ P\approx26.3\,kW $$
+
+Considering drivetrain losses, approximately:
+
+$$ P_{battery}\approx\frac{26.3}{0.90} $$ $$ \boxed{P_{battery}\approx29.2\,kW} $$
+
+Therefore, a 50 kW peak motor provides sufficient power margin for the assumed acceleration requirement.
+
+10. Uphill/Gradient Analysis
+
+Consider a 5% road gradient.
+
+Gradient force:
+
+$$ F_{grade}=mg\times0.05 $$ $$ F_{grade}=1200\times9.81\times0.05 $$ $$ \boxed{F_{grade}\approx589\,N} $$
+
+At 60 km/h, total force becomes approximately:
+
+$$ F_{total}=141+122+589 $$ $$ \boxed{F_{total}\approx852\,N} $$
+
+Required wheel power:
+
+$$ P=852\times16.67 $$ $$ P\approx14.2\,kW $$
+
+Battery power considering 90% efficiency:
+
+$$ P_{battery}=\frac{14.2}{0.9} $$ $$ \boxed{P_{battery}\approx15.8\,kW} $$
+
+Therefore, the selected 50 kW motor can comfortably provide the required power for this operating condition.
+
+11. Battery Design
+
+For the proposed vehicle, a 30 kWh lithium-ion battery pack is selected.
+
+| Parameter                   |                     Value |
+| --------------------------- | ------------------------: |
+| Battery chemistry           |               Lithium-ion |
+| Nominal voltage             |                     350 V |
+| Capacity                    |                    30 kWh |
+| Approximate usable capacity |                    27 kWh |
+| Battery management          |                       BMS |
+| Cooling                     | Thermal management system |
+| Charging                    |               AC charging |
+| Regenerative braking        |                       Yes |
+
+
+The usable battery capacity is assumed to be around 90% of the nominal capacity to avoid operating continuously at the extreme ends of the battery's state of charge.
+
+$$ 30\times0.90=27\,kWh $$
+
+Thus:
+
+$$ \boxed{E_{usable}\approx27\,kWh} $$
+12. Battery Ah Capacity
 
 Battery capacity in Ah can be estimated using:
 
-Capacity (Ah) = Energy (Wh) / Voltage (V)
+$$ Ah=\frac{Wh}{V} $$ $$ Ah=\frac{30,000}{350} $$ $$ \boxed{Ah\approx85.7\,Ah} $$
 
-Therefore:
+Therefore, the proposed battery pack is approximately:
 
-Capacity = 30,000 / 144
+350 V, 86 Ah, 30 kWh
 
-Capacity ≈ 208.3 Ah
+13. Estimated Energy Consumption
 
-So the proposed battery pack is approximately:
+For practical estimation, an average energy consumption of approximately:
 
-144 V, 208 Ah, 30 kWh
+$$ \boxed{150\,Wh/km} $$
 
-7. Motor Requirement
+is assumed for mixed driving.
 
-The vehicle requires sufficient motor power for:
+This includes energy used for:
 
-Starting from rest
-Acceleration
-Climbing gradients
-Maintaining cruising speed
-Overcoming aerodynamic and rolling resistance
+Motor
+Inverter
+Transmission
+Rolling resistance
+Aerodynamic losses
+Auxiliary systems
+Real-world operating losses
+14. Estimated Driving Range
 
-For this project, a:
+Using usable battery energy:
 
-40 kW peak PMSM motor
+$$ Range=\frac{Battery\ Energy}{Energy\ Consumption} $$ $$ Range=\frac{27,000}{150} $$ $$ \boxed{Range\approx180\,km} $$
 
-is selected.
+Using the full nominal battery capacity:
 
-A continuous rating of approximately:
+$$ Range=\frac{30,000}{150} $$ $$ \boxed{Range\approx200\,km} $$
 
-20 kW
+Therefore, the expected practical range is approximately:
 
-is considered sufficient for normal urban driving.
+180–200 km per charge
 
-The peak rating provides additional power during acceleration and hill climbing.
+Actual range would vary with speed, temperature, road gradient, traffic, payload, tyre pressure and driving style.
 
-8. Approximate Range Calculation
+15. Energy Consumption Under Different Conditions
+Driving Condition	Approx. Consumption
+Low-speed city driving	130–160 Wh/km
+Normal mixed driving	~150 Wh/km
+Highway driving	160–190 Wh/km
+High-speed driving	190–230 Wh/km
+Uphill driving	220–300+ Wh/km
+Heavy traffic with frequent acceleration	170–210 Wh/km
 
-Assume the estimated average energy consumption is:
+These values are engineering estimates for the proposed design rather than measured test results.
 
-150 Wh/km
+16. Range Under Different Conditions
 
-Usable battery energy:
+Using a usable battery capacity of approximately 27 kWh:
 
-27,000 Wh
+City
 
-Therefore:
+Assume:
 
-Range = Usable Battery Energy / Energy Consumption
+$$ 150\,Wh/km $$ $$ Range=\frac{27000}{150} $$ $$ \boxed{180\,km} $$
+Highway
 
-Range = 27,000 / 150
+Assume:
 
-Range ≈ 180 km
+$$ 180\,Wh/km $$ $$ Range=\frac{27000}{180} $$ $$ \boxed{150\,km} $$
+High-Speed Driving
 
-Therefore, the estimated practical driving range under the assumed conditions is approximately:
+Assume:
 
-180 km per charge
+$$ 210\,Wh/km $$ $$ Range=\frac{27000}{210} $$ $$ \boxed{129\,km} $$
 
-Actual range will vary depending on speed, traffic, road conditions, vehicle load, temperature, driving style, and use of auxiliary systems such as air conditioning.
+Thus, driving conditions have a significant effect on EV range.
 
-9. Energy Consumption Under Different Conditions
+17. Regenerative Braking
 
-Energy consumption changes according to the operating conditions of the vehicle.
+Regenerative braking is an important feature of the proposed EV.
 
-Driving Condition	Approx. Consumption	Estimated Range*
-Slow city traffic	130 Wh/km	~208 km
-Normal city driving	150 Wh/km	~180 km
-Highway driving	180 Wh/km	~150 km
-High-speed driving	220 Wh/km	~123 km
-Heavy load / frequent acceleration	200 Wh/km	~135 km
+During conventional braking, kinetic energy is mostly converted into heat through the braking system. In regenerative braking, the traction motor operates as a generator.
 
-*Range values are theoretical estimates based on 27 kWh usable energy.
+Energy Flow
 
-10. Energy Consumption Calculation
+Vehicle kinetic energy → Motor/Generator → Inverter → Battery
 
-For normal city driving:
+Regenerative braking can recover a portion of the energy that would otherwise be lost.
 
-Energy consumption = 150 Wh/km
+However, the actual recovered energy depends on:
 
-For a distance of 100 km:
+Vehicle speed
+Braking intensity
+Battery state of charge
+Motor efficiency
+Road conditions
+Control strategy
+18. Charging Requirement
 
-Energy required = 150 × 100
+For a 30 kWh battery, assuming an AC charging power of 7.2 kW:
 
-= 15,000 Wh
+$$ Charging\ Time=\frac{30}{7.2} $$ $$ \boxed{\approx4.2\ hours} $$
 
-= 15 kWh
+Considering charging losses, practical charging time would be somewhat higher.
 
-Therefore, approximately 15 kWh of usable battery energy would be required for 100 km under the assumed normal-city-driving condition.
-
-11. Motor Power and Battery Power
-
-The motor's peak mechanical power is:
-
-40 kW
-
-Assuming drivetrain efficiency of approximately 90%:
-
-Battery input power = Motor output power / Efficiency
-
-= 40 / 0.90
-
-≈ 44.4 kW
-
-Therefore, when the motor is delivering approximately 40 kW mechanically, the battery-side electrical power requirement can be around 44.4 kW, excluding other auxiliary electrical loads.
-
-This demonstrates why the battery, inverter, cables, and protection systems must be designed to handle high current during acceleration.
-
-12. Energy Consumption Factors
-
-The energy consumption of an EV depends on several factors:
-
-A. Vehicle Weight
-
-Higher vehicle mass requires more energy during acceleration.
-
-B. Speed
-
-At higher speeds, aerodynamic drag increases significantly, increasing energy consumption.
-
-C. Road Gradient
-
-Driving uphill requires additional power because the vehicle must overcome gravitational force.
-
-D. Driving Style
-
-Frequent acceleration and braking generally increase energy consumption.
-
-E. Tire Pressure
-
-Incorrect tire pressure can increase rolling resistance and reduce efficiency.
-
-F. Weather Conditions
-
-Temperature can affect battery performance and energy consumption.
-
-G. Auxiliary Loads
-
-Air conditioning, heating, lighting, and infotainment systems also consume electrical energy.
-
-13. Regenerative Braking
-
-Regenerative braking is an important feature of electric vehicles.
-
-During braking:
-
-Vehicle Kinetic Energy → Electric Motor → Electrical Energy → Battery
-
-Instead of converting all braking energy into heat through conventional friction brakes, part of the kinetic energy can be recovered and stored in the battery.
-
-However, regenerative braking does not recover 100% of the energy because losses occur in the motor, inverter, battery, and mechanical system.
-
-14. Technical Justification of the Design
-
-The proposed specifications are selected to provide a balance between performance, battery capacity, vehicle weight, range, and efficiency.
-
-30 kWh Battery
-
-A 30 kWh battery provides sufficient energy for an estimated ~180 km range under the assumed normal city-driving consumption.
-
-40 kW Motor
-
-A 40 kW peak motor provides adequate power for a small urban vehicle while allowing additional power for acceleration and gradients.
-
-144 V Battery System
-
-The selected voltage provides a reasonable balance between current requirements and system complexity for this conceptual design.
-
-PMSM Motor
-
-PMSM motors are suitable for EV applications because of their high efficiency, compact size, and good torque characteristics.
-
-15. Advantages of the Proposed EV Design
-Zero tailpipe emissions during operation
-High electric drivetrain efficiency
-Lower energy consumption compared with many conventional vehicles
-Regenerative braking capability
-Reduced dependence on fossil fuels
-Suitable for urban transportation
-Simple single-speed drivetrain
-Potentially lower routine maintenance requirements
-16. Limitations and Assumptions
-
-This project is a conceptual engineering design, so the calculations are based on assumed values.
-
-Actual EV performance would require detailed analysis of:
-
-Battery cell chemistry
-Cell configuration
-Thermal management
-Motor torque-speed characteristics
-Vehicle aerodynamics
-Tire specifications
-Road gradient
-Drive-cycle testing
-Inverter losses
-Auxiliary loads
-Battery aging
-
-Therefore, the calculated range should be considered an approximate engineering estimate rather than a certified vehicle specification.
-
-17. Final Design Summary
-18. | Component                 | Proposed Specification   |
-| ------------------------- | ------------------------ |
-| Vehicle                   | Small Urban Electric Car |
-| Total loaded mass         | 1050 kg                  |
-| Battery                   | 30 kWh Lithium-ion       |
-| Battery voltage           | 144 V                    |
-| Approx. battery capacity  | 208 Ah                   |
-| Motor                     | PMSM                     |
-| Peak motor power          | 40 kW                    |
-| Continuous motor power    | 20 kW                    |
-| Drivetrain efficiency     | 90%                      |
-| Usable battery energy     | 27 kWh                   |
-| Normal energy consumption | ~150 Wh/km               |
-| Estimated range           | ~180 km                  |
-| Maximum speed             | ~80 km/h                 |
-| Regenerative braking      | Yes                      |
-
-19. Conclusion
-
-This project provided a practical understanding of how the major components of an Electric Vehicle system are selected and how battery capacity, motor power, energy consumption, and driving range are related.
-
-For the proposed small urban EV, a 30 kWh battery pack and 40 kW peak PMSM motor were selected. Based on an assumed normal energy consumption of approximately 150 Wh/km, the estimated range is around 180 km using approximately 27 kWh of usable battery energy.
-
-The analysis demonstrates that EV design is a system-level engineering problem in which battery capacity, motor power, efficiency, vehicle mass, speed, road conditions, and driving patterns all influence vehicle performance.
-
-Skills/Knowledge Gained
-EV system architecture
-Battery capacity calculation
-Motor power estimation
-Energy consumption analysis
-Driving-range estimation
-Regenerative braking concepts
-Basic EV component selection
-Technical documentation and engineering calculations
-
-Project Outcome:
-A basic conceptual EV system was successfully designed with estimated battery capacity, motor requirement, driving range, and energy consumption under different operating conditions.
+Proposed Charging System
+AC charging: approximately 7.2 kW
+Battery: 30 kWh
+Charging time: approximately 4–5 hours
+Charging interface: suitable EV AC charging connector
+BMS-controlled charging
+19. Major Components of Proposed EV
+1. Battery Pack
+
+Stores electrical energy and supplies power to the vehicle.
+
+2. Battery Management System
+
+Monitors:
+
+Voltage
+Current
+Temperature
+State of Charge
+Cell balancing
+Battery protection
+3. Inverter
+
+Converts DC battery power into controlled AC power for the motor.
+
+4. PMSM Motor
+
+Converts electrical energy into mechanical energy.
+
+5. Reduction Gearbox
+
+Transfers motor torque to the wheels while providing the required speed reduction.
+
+6. DC-DC Converter
+
+Converts high-voltage battery power to low voltage for auxiliary electrical systems.
+
+7. On-Board Charger
+
+Converts AC charging power into DC power suitable for the battery.
+
+8. Vehicle Control Unit
+
+Coordinates motor control, battery management, braking and other vehicle functions.
+
+20. Overall Energy Flow
+              AC GRID
+             │
+             ▼
+      ON-BOARD CHARGER
+             │
+             ▼
+       BATTERY PACK
+             │
+             ▼
+            BMS
+             │
+             ▼
+          INVERTER
+             │
+             ▼
+      PMSM ELECTRIC MOTOR
+             │
+             ▼
+       REDUCTION GEAR
+             │
+             ▼
+           WHEELS
+             │
+             ▼
+          VEHICLE
+
+During regenerative braking:
+ WHEELS
+   ↓
+ELECTRIC MOTOR
+   ↓
+INVERTER
+   ↓
+BATTERY
+21. Design Summary
+| Parameter                 | Final Design |
+| ------------------------- | -----------: |
+| Vehicle                   |   Compact EV |
+| Vehicle mass              |      1200 kg |
+| Maximum speed             |     100 km/h |
+| Cruising speed            |      60 km/h |
+| Motor                     |         PMSM |
+| Motor peak power          |        50 kW |
+| Motor continuous power    |     25–30 kW |
+| Battery voltage           |        350 V |
+| Battery capacity          |       30 kWh |
+| Usable energy             |      ~27 kWh |
+| Battery capacity          |       ~86 Ah |
+| Energy consumption        |   ~150 Wh/km |
+| Estimated practical range |   180–200 km |
+| Drivetrain efficiency     |          90% |
+| Charging power            |   ~7.2 kW AC |
+| Approx. charging time     |    4–5 hours |
+| Regenerative braking      |          Yes |
+
+22. Technical Justification
+
+The proposed EV design uses a 50 kW PMSM motor because the vehicle requires significantly more power during acceleration and uphill driving than during constant-speed cruising.
+
+A 30 kWh lithium-ion battery is selected because it provides a practical balance between vehicle range, battery weight and cost. With an assumed average energy consumption of approximately 150 Wh/km, the vehicle can achieve an estimated practical range of around 180 km using 90% usable battery capacity.
+
+The aerodynamic drag and rolling resistance calculations show that cruising on a level road requires considerably less power than acceleration. This demonstrates why motor sizing must consider transient conditions rather than only steady-state cruising.
+
+The inclusion of regenerative braking can further improve overall energy efficiency by recovering a portion of the vehicle's kinetic energy during deceleration.
+
+23. Conclusion
+
+This project presents the conceptual design and energy analysis of a compact battery electric vehicle. Based on the selected vehicle parameters, a 50 kW PMSM traction motor and 30 kWh lithium-ion battery pack are proposed.
+
+The calculated results indicate that approximately 4.9 kW of battery power is required for steady 60 km/h cruising on a level road under the stated assumptions, while approximately 15.8 kW may be required at 60 km/h on a 5% gradient. The acceleration analysis indicates a requirement of approximately 29 kW battery power for the assumed 0–50 km/h in 10 seconds condition.
+
+With approximately 27 kWh usable battery energy and an assumed average consumption of 150 Wh/km, the estimated practical driving range is approximately 180 km, with the nominal-energy calculation giving approximately 200 km. Actual range will depend on speed, traffic, payload, temperature, terrain and driving conditions.
+
+Overall, the proposed design demonstrates the basic engineering approach used in EV system design, including motor sizing, battery sizing, energy consumption estimation, range calculation, regenerative braking and charging requirements.
